@@ -1,0 +1,46 @@
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.start {
+    border: 1px solid rgb(30, 141, 231);
+    background-color: rgb(30, 141, 231);
+
+    &:hover {
+        background-color: rgb(26, 120, 197);
+        border-color: rgb(26, 120, 197);
+    }
+}
+
+.clear {
+    background-color: red;
+    border-color: red;
+
+    &:hover {
+        background-color: rgb(214, 0, 0);
+        border-color: rgb(214, 0, 0);
+    }
+}
+
+.reset {
+    background-color: gray;
+    border-color: gray;
+
+    &:hover {
+        background-color: rgb(105, 105, 105);
+        border-color: rgb(105, 105, 105);
+    }
+}
+
+.next {
+    background-color: rgb(45, 255, 80);
+    border-color: rgb(45, 255, 80);
+
+    &:hover {
+        background-color: rgb(40, 212, 68);
+        border-color: rgb(40, 212, 68);
+    }
+}

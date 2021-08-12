@@ -1,0 +1,83 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .info {
+        padding-left: 100px;
+    }
+}
+.display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+.controls-container {
+    padding: 10px;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 10px;
+
+    .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .algorithms {
+            width: 100px;
+        }
+    }
+}
+
+
+.grid-container {
+    margin: 10px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+    .grid {
+        display: grid;
+        justify-content: center;
+        background-color: grey;
+
+        .row {
+            display: flex;
+            flex-flow: row;
+            flex-direction: row;
+        }
+    }
+}
+
+.speed-slider {
+    
+}
+
+.node {
+    $node-size: 20px;
+    width: $node-size;
+    height: $node-size;
+    border: 1px solid rgb(153, 153, 153);
+    border-radius: 2px;
+    display: flex;
+
+    &:hover {
+        background-color: rgb(99, 99, 143);
+    }
+
+    &-dead {
+        background-color: rgb(218, 219, 218);
+        transition: 100ms;
+    }
+
+    &-alive {
+        background-color: rgb(107, 37, 148);
+    }
+}
+
+
+
