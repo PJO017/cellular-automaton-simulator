@@ -15,7 +15,7 @@ export const Controls = (props) => {
   } = props;
 
   return (
-    <div className="buttons">
+    <div className="controls-container">
       <span style={{ color: "black" }}>Controls</span>
       <button className="start" onClick={start}>
         {running ? "Stop" : "Start"}
@@ -34,7 +34,6 @@ export const Controls = (props) => {
           type="range"
           min="-1000"
           max="0"
-          class="slider"
           step="100"
           className="speed-slider"
           onChange={changeSpeed}

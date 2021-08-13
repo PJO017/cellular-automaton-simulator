@@ -1,44 +1,42 @@
 .main {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .info {
-        padding-left: 100px;
-    }
-}
-.display {
-    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 90%;
     color: black;
+
 }
 
-.controls-container {
+.options {
+    width: 20%;
+    height: 100%;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+    width: 20%;
     padding: 10px;
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     border-radius: 10px;
-
-    .controls {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-        .algorithms {
-            width: 100px;
-        }
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
+
 .grid-container {
-    margin: 10px;
     padding: 30px;
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 10px;
 
     .grid {
         display: grid;
@@ -53,29 +51,29 @@
     }
 }
 
-.speed-slider {
-    
-}
+
 
 .node {
-    $node-size: 20px;
+    $node-size: 12px;
     width: $node-size;
     height: $node-size;
     border: 1px solid rgb(153, 153, 153);
     border-radius: 2px;
     display: flex;
+    transition: 300ms;
+    transition-property: width, height;
 
     &:hover {
         background-color: rgb(99, 99, 143);
     }
 
+
     &-dead {
         background-color: rgb(218, 219, 218);
-        transition: 100ms;
     }
 
     &-alive {
-        background-color: rgb(107, 37, 148);
+        background-color: rgb(51, 75, 209);
     }
 }
 

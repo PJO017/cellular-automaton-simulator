@@ -1,14 +1,16 @@
 import React, { useState, useRef } from 'react'
 import { produce } from 'immer'
 import { Algorithms } from './Algorithms';
-import { Controls } from './Controls/Controls'
+import { Controls } from '../Controls/Controls'
 import './Engine.scss'
 
 
 export const Engine = () => {
     // Grid dimensions
-    const rows = 20;
-    const cols = 30;
+    const rows = 45;
+    const cols = 55;
+
+    // row 45 col 55
 
     const [grid, setGrid] = useState(() => {
         let grid = [];
@@ -17,11 +19,19 @@ export const Engine = () => {
         }
         return grid;
     })
-    const [initGrid, setInitGrid] = useState(grid)
-    const [gen, setGen] = useState(0)
+
+
+    // Initial States
+    const [info, setInfo] = useState({
+        gen: 0,
+        alive: 0,
+        dead: rows*cols,
+    })
+    const [initState, setInitState] = useState({grid, info})
+    
 
     // Algorithms
-    const { runAlgorithm } = Algorithms(setGrid, setGen, rows, cols);
+    const { runAlgorithm, genRandGrid } = Algorithms(setGrid, setInfo, rows, cols);
     const algos = ["Conway", "Life Without Death", "HighLife", "Day and Night", "Replicator", "Seed", 'Just Friends'];
 
     const [currAlgo, setCurrAlgo] = useState(0);
@@ -31,7 +41,7 @@ export const Engine = () => {
     const runningRef = useRef(running)
 
     const [speed, setSpeed] = useState(0)
-    const speedRef = useRef(0)
+    const speedRef = useRef(speed)
 
     const startSim = () => {
         if (!runningRef.current) {
@@ -45,7 +55,7 @@ export const Engine = () => {
 
     // Start algorithm
     const start = () => {
-        if (gen===0) setInitGrid(grid)
+        if (info.gen===0) setInitState({grid, info})
         setRunning(!running);
         runningRef.current = !runningRef.current
         startSim(speedRef)
@@ -55,7 +65,7 @@ export const Engine = () => {
     const nextGen = () => {
         if (running) return;
         else {
-            if (gen===0) setInitGrid(grid)
+            if (info.gen===0) setInitState({grid, info})
             setRunning(true);
             runningRef.current = true;
             startSim(speedRef)
@@ -67,7 +77,21 @@ export const Engine = () => {
     // Toggle Cell 
     const toggleClick = (r, c) => {
         const newGrid = produce(grid, gridCopy => {
-            gridCopy[r][c] = gridCopy[r][c] ? 0 : 1
+            if (grid[r][c] === 0) {
+                gridCopy[r][c] = 1;
+                setInfo({
+                        ...info, 
+                        alive: info.alive+1, 
+                        dead: info.dead-1
+                })
+            } else {
+                gridCopy[r][c] = 0;
+                setInfo({
+                    ...info, 
+                    alive: info.alive-1, 
+                    dead: info.dead+1
+            })
+            }
         })
         setGrid(newGrid);
     }
@@ -85,7 +109,10 @@ export const Engine = () => {
         currAlgoRef.current = e.target.value
         setRunning(false);
         runningRef.current = false;
-        setGen(0);
+        setInfo({
+            ...info,
+            gen: 0,
+        })
     }
 
     // Clear grid cells
@@ -99,56 +126,64 @@ export const Engine = () => {
                 }
             }
         })
-        setGrid(newGrid)
-        setGen(0)
+        setGrid(newGrid);
+        setInfo({
+            gen: 0,
+            alive: 0,
+            dead: rows*cols
+        })
     }
 
     // Reset grid to initial state
     const resetGrid = () => {
         setRunning(false);
         runningRef.current = false;
-        setGrid(initGrid);
-        setGen(0);
+        setGrid(initState.grid);
+        setInfo(initState.info)
     }
 
     return (
         <div className="main">
-            <div className="info" style={{display: "flex", flexDirection: 'column', alignItems: 'center'}}>
-                <span>Generation: {gen}</span>
-                <span>{algos[currAlgoRef.current]}</span>
+            <div className="options">
+                <Controls 
+                    running={running}
+                    start={start}
+                    resetGrid={resetGrid}
+                    clearGrid={clearGrid}
+                    nextGen={nextGen}
+                    changeSpeed={changeSpeed}
+                    changeAlgo={changeAlgo}
+                    algos={algos}
+                    currAlgo={currAlgo}
+                />
+                <button onClick={genRandGrid}>
+                    Randomize
+                </button>
             </div>
-            <div className="display">
-                <div className="controls-container">
-                    <Controls 
-                        running={running}
-                        start={start}
-                        resetGrid={resetGrid}
-                        clearGrid={clearGrid}
-                        nextGen={nextGen}
-                        changeSpeed={changeSpeed}
-                        changeAlgo={changeAlgo}
-                        algos={algos}
-                        currAlgo={currAlgo}
-                    /> 
+            
+            <div className="grid-container">
+                <div className='grid'>
+                    {grid.map((row, r) => (
+                        <div key={r} className='row'>
+                            {
+                            row.map((cell, c) => 
+                                (<div 
+                                    key={c}
+                                    className={`node node-${grid[r][c] === 1 ? 'alive' : 'dead'}`}
+                                    onClick={() => toggleClick(r, c)}
+                                    >
+                                    {grid[r][c] === 1}
+                                </div>))
+                            }
+                        </div>
+                    ))}
                 </div>
-                <div className="grid-container">
-                    <div className='grid'>
-                        {grid.map((row, r) => (
-                            <div key={r} className='row'>
-                                {
-                                row.map((cell, c) => 
-                                    (<div 
-                                        key={c}
-                                        className={`node node-${grid[r][c] === 1 ? 'alive' : 'dead'}`}
-                                        onClick={() => toggleClick(r, c)}
-                                        >
-                                        {grid[r][c] === 1}
-                                    </div>))
-                                }
-                            </div>
-                        ))}
-                    </div>
-                </div>
+            </div>
+            <div className="info">
+                <span>{algos[currAlgoRef.current]}</span>
+                <span>Generation: {info.gen}</span>
+                <span>Alive: {info.alive}</span>
+                <span>Dead: {info.dead}</span>
             </div>
         </div>
     )

@@ -1,9 +1,15 @@
-.buttons {
+
+.controls-container {
+    width: 93%;
+    padding: 10px;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: blue;
 }
-
 
 .start {
     border: 1px solid rgb(30, 141, 231);
