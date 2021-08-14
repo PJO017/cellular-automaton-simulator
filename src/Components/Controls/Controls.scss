@@ -1,15 +1,40 @@
-
 .controls-container {
-    width: 93%;
+    margin-top: 10px;
+    width: 100%;
     padding: 10px;
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    // background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-color: #ffffff1e;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: blue;
+    box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+
+
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
+
+.speed {
+    display: flex;
+
+    span {
+        margin-right: 0.5em;
+        span {
+            margin-right: 0em;
+        }
+        
+    }
+    .speed-slider {
+    margin-top: 5px;
+    width: 100%;
+}
+}
+
 
 .start {
     border: 1px solid rgb(30, 141, 231);

@@ -29,7 +29,7 @@ export const Algorithms = (setGrid, setInfo, rows, cols) => {
 
                         // Algorithm rules
                         switch(algorithm) {
-                            case "Conway":
+                            case "Conway's Way of Life":
                                 if (neighbors < 2 || neighbors > 3) {
                                     if (curGrid[i][j] === 1)
                                         updatePop--;

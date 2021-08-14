@@ -9,46 +9,37 @@ export const Controls = (props) => {
     start,
     nextGen,
     changeSpeed,
-    changeAlgo,
-    currAlgo,
-    algos
   } = props;
 
   return (
     <div className="controls-container">
-      <span style={{ color: "black" }}>Controls</span>
+      <span className="title">Controls</span>
       <button className="start" onClick={start}>
-        {running ? "Stop" : "Start"}
+        {running ?
+          <span><span class="material-icons">stop</span>Stop</span>: 
+          <span><span class="material-icons">play_arrow</span>Start</span>
+          }
       </button>
       <button className="next" onClick={nextGen}>
-        Next
+      <span><span class="material-icons">redo</span>Next</span>
       </button>
       <button className="reset" onClick={resetGrid}>
-        Reset
+        <span><span class="material-icons">restart_alt</span>Reset</span>
       </button>
       <button className="clear" onClick={clearGrid}>
-        Clear
+        <span><span class="material-icons">clear</span>Clear</span>
       </button>
-      <span>Speed</span>
-      <input
+      <div className="speed">
+        <span><span class="material-icons">speed</span>Speed</span>
+        <input
           type="range"
           min="-1000"
           max="0"
           step="100"
           className="speed-slider"
-          onChange={changeSpeed}
-      ></input>
-      <span>Choose Algorithm</span>
-      <select 
-          className="algorithms"
-          onChange={changeAlgo}
-          value={currAlgo}
-          disabled={running}
-          style={{margin: 5}}>
-          {algos.map((algo, idx) => (
-              <option key={idx} value={idx}>{algo}</option>
-          ))}
-      </select>
+          onChange={changeSpeed}>
+        </input>
+      </div>
     </div>
   );
 };

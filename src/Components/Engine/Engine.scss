@@ -5,9 +5,10 @@
     justify-content: center;
     width: 100%;
     height: 90%;
-    color: black;
+    color: rgb(194, 194, 194);
 
 }
+
 
 .options {
     width: 20%;
@@ -16,32 +17,151 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+
+    .title {
+        font-size: 22px;
+    }
+
+
+    .config {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        width: 100%;
+        background-color: #ffffff1e;
+        padding: 10px;
+
+        .config-buttons {
+            display: flex;
+            width: 100%;
+            margin-top: 5px;
+
+            .random {
+                border: 1px solid rgb(218, 186, 44);
+                background-color: rgb(218, 186, 44);
+            
+                &:hover {
+                    background-color: rgb(202, 173, 43);
+                    border-color: rgb(202, 173, 43);
+                }
+            }
+
+            .preset {
+                border: 1px solid rgb(216, 63, 236);
+                background-color: rgb(216, 63, 236);
+            
+                &:hover {
+                    background-color: rgb(182, 53, 199);
+                    border-color: rgb(182, 53, 199);
+                }
+            } 
+        }
+
+       
+    }
+    
+
+    .algorithms {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #ffffff1e;
+
+        select {
+            width: 100%;
+            height: 40px;
+            border: 0px;
+            border-radius: 5px;
+            background-color: #ffffff5b;
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            color: rgb(255, 250, 250);
+            margin-top: 5px;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:disabled {
+                background-color: #ffffff33;
+            }
+            
+        }
+    }
+
+
 }
 
 .info {
     width: 20%;
+    height: 70%;
     padding: 10px;
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding-top: 0px;
+    // background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-color: #ffffff1e;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+
+    .title {
+        font-size: 28px;
+        
+    }
+
+    .data {
+        font-size: 25px;
+        margin-bottom: 25px;
+        color: #23a6d5;
+    }
 }
 
-
-
 .grid-container {
-    padding: 30px;
+    padding: 15px;
     border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     margin: 10px;
+    box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+    background-color: #ffffff1e;
+
+    
+
+    .container-outline {
+        border-radius: 10px;
+        padding: 10px;
+        height: 80%;
+        background-color: #ffffff3b;
+        
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 5s ease infinite;
+
+        @keyframes gradient {
+            0% {
+            background-position: 0% 50%;
+            }
+            50% {
+            background-position: 100% 50%;
+            }
+            100% {
+            background-position: 0% 50%;
+            }
+        }
+
+    }
 
     .grid {
         display: grid;
         justify-content: center;
-        background-color: grey;
+        background-color: rgba(255, 255, 255, 0.404);
 
         .row {
             display: flex;
@@ -58,22 +178,23 @@
     width: $node-size;
     height: $node-size;
     border: 1px solid rgb(153, 153, 153);
-    border-radius: 2px;
     display: flex;
     transition: 300ms;
     transition-property: width, height;
 
+
     &:hover {
         background-color: rgb(99, 99, 143);
+        cursor: pointer;
     }
 
 
     &-dead {
-        background-color: rgb(218, 219, 218);
+        background-color: rgb(170, 170, 170);
     }
 
     &-alive {
-        background-color: rgb(51, 75, 209);
+        background-color: rgba(255, 255, 255, 0);
     }
 }
 
