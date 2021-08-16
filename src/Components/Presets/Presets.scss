@@ -1,3 +1,5 @@
+
+
 .main {
     width: 100%;
     height: 100%;
@@ -7,21 +9,42 @@
 }
 
 .preset-list {
-    width: 100%;
+    width: 95%;
     height: 100%;
+    margin: 5px;
+    margin-top: 0px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 15px;
+        border-radius: 10px;
+        background-color: grey;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #23a6d5;
+        border-radius: 10px;
+        outline: 1px solid slategrey;
+    }
 }
 
 .preset-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.178);
-    width: 100%;
+    border: 1px solid white;
+    width: 90%;
     padding: 10px;
     border-radius: 10px;
+    margin: 10px;
 
-    span {
+    .title {
         font-size: 30px;
+    }
+
+    .desc {
+        font-size: 15px;
+        font-weight: 100;
     }
 
     .img_container {
@@ -31,6 +54,14 @@
         width: 80%;
         height: 50%;
         margin-top: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.178);
+
+
+        &:hover {
+            cursor: pointer;
+        }
 
         .img_border {
             display: flex;

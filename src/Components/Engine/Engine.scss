@@ -108,7 +108,6 @@
     height: 70%;
     padding: 10px;
     padding-top: 0px;
-    // background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     background-color: #ffffff1e;
     border-radius: 10px;
     display: flex;
@@ -141,10 +140,9 @@
         border-radius: 10px;
         padding: 10px;
         height: 80%;
-        background-color: #23a6d5;
+        // background-color: #23a6d5;
         
-        // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-        // background: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
         background-size: 400% 400%;
         animation: gradient 10s ease infinite;
 

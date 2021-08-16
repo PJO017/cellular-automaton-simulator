@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { produce } from 'immer'
 import { Algorithms } from './Algorithms'
 import { Controls } from '../Controls/Controls'
-import { Presets } from '../Presets/Presets'
+import { Presets } from '../Presets/Presets.jsx'
 import './Engine.scss'
 
 
@@ -145,18 +145,6 @@ export const Engine = () => {
         setInfo(initState.info)
     }
 
-    const getConfig = () => {
-        const liveCells = [];
-        for (let i = 0; i < rows; i++ ) {
-            for (let j = 0; j < cols; j++) {
-                if (grid[i][j] === 1) {
-                    liveCells.push([i, j])
-                }
-            }
-        }
-        console.log(liveCells);
-    }
-
     const loadConfig = (config) => {
         const newGrid = produce(grid, gridCopy => {
             for (let i = 0; i < rows; i++) {
@@ -170,16 +158,19 @@ export const Engine = () => {
                 const y = config[i][1];
                 gridCopy[x][y] = 1;
             }
-        }) 
-        
+        })    
         setGrid(newGrid)
+        setInfo({
+            gen: 0, 
+            alive: config.length,
+            dead: (rows*cols)-config.length
+        })
     }
 
     return (
         <div className="main">
             <Presets isOpen={isPresetsOpen} setIsOpen={setIsPresetsOpen} loadConfig={loadConfig}/>
             <div className="options">
-            <button onClick={() => getConfig()}style={{color: "black"}}>Get Config</button>
                 <div className="config">
                     <span className="title">Configuration</span>
                     <div className="config-buttons">

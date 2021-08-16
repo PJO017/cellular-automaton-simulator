@@ -9,7 +9,7 @@ export const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    // setIsModalOpen(true)
+    setIsModalOpen(true)
   }, [])
 
   return (
