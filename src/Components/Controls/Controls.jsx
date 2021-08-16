@@ -8,6 +8,7 @@ export const Controls = (props) => {
     clearGrid, 
     start,
     nextGen,
+    speed,
     changeSpeed,
   } = props;
 
@@ -39,6 +40,7 @@ export const Controls = (props) => {
           className="speed-slider"
           onChange={changeSpeed}>
         </input>
+        <span>{(speed-1000)/(-100)}</span>
       </div>
     </div>
   );

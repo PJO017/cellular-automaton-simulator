@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 
     .title {
         font-size: 22px;
@@ -33,6 +33,8 @@
         width: 100%;
         background-color: #ffffff1e;
         padding: 10px;
+        box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+        margin-bottom: 10px;
 
         .config-buttons {
             display: flex;
@@ -74,6 +76,7 @@
         padding: 10px;
         border-radius: 10px;
         background-color: #ffffff1e;
+        box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
 
         select {
             width: 100%;
@@ -84,7 +87,7 @@
             font-family: 'Roboto', sans-serif;
             font-size: 18px;
             color: rgb(255, 250, 250);
-            margin-top: 5px;
+            margin: 5px;
 
             &:hover {
                 cursor: pointer;
@@ -138,11 +141,12 @@
         border-radius: 10px;
         padding: 10px;
         height: 80%;
-        background-color: #ffffff3b;
+        background-color: #23a6d5;
         
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        // background: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
         background-size: 400% 400%;
-        animation: gradient 5s ease infinite;
+        animation: gradient 10s ease infinite;
 
         @keyframes gradient {
             0% {
@@ -174,7 +178,7 @@
 
 
 .node {
-    $node-size: 12px;
+    $node-size: 14px;
     width: $node-size;
     height: $node-size;
     border: 1px solid rgb(153, 153, 153);
@@ -190,7 +194,7 @@
 
 
     &-dead {
-        background-color: rgb(170, 170, 170);
+        background-color: rgb(139, 139, 139);
     }
 
     &-alive {

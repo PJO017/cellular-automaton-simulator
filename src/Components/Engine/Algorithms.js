@@ -3,6 +3,12 @@ import { produce } from 'immer';
 export const Algorithms = (setGrid, setInfo, rows, cols) => {
     const dx = [1, -1, 0, 0, 1, -1, -1, 1];
     const dy = [0, 0, 1, -1, 1, -1, 1, -1];
+
+    const mod = (index, maxSize) => {
+        while (index < 0)
+            index += maxSize;
+        return index % maxSize;
+    }
     
     const runAlgorithm = (algorithm) => {
         var updatePop = 0;
@@ -16,14 +22,13 @@ export const Algorithms = (setGrid, setInfo, rows, cols) => {
                         var diagNeighbors = 0;
 
                         for (let d = 0; d < 8; d++) {
-                            const newI = i + dx[d];
-                            const newJ = j + dy[d];
-            
-                            if (newI >= 0 && newI < rows && newJ >= 0 && newJ < cols) {
-                                neighbors += curGrid[newI][newJ];
-                                if (newI !== 0 && newJ !== 0) {
-                                    diagNeighbors += curGrid[newI][newJ];
-                                }
+
+                            const newI = mod(i+dx[d], rows);
+                            const newJ = mod(j+dy[d], cols);
+
+                            neighbors += curGrid[newI][newJ];
+                            if (newI !== 0 && newJ !== 0) {
+                                diagNeighbors += curGrid[newI][newJ];
                             }
                         }
 
@@ -31,9 +36,9 @@ export const Algorithms = (setGrid, setInfo, rows, cols) => {
                         switch(algorithm) {
                             case "Conway's Way of Life":
                                 if (neighbors < 2 || neighbors > 3) {
+                                    newGrid[i][j] = 0;
                                     if (curGrid[i][j] === 1)
                                         updatePop--;
-                                    newGrid[i][j] = 0;
                                 } else if (curGrid[i][j] === 0 && neighbors === 3) {
                                     newGrid[i][j] = 1;
                                     updatePop++;

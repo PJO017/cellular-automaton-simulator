@@ -1,16 +1,18 @@
 import React, { useState, useRef } from 'react'
 import { produce } from 'immer'
-import { Algorithms } from './Algorithms';
+import { Algorithms } from './Algorithms'
 import { Controls } from '../Controls/Controls'
+import { Presets } from '../Presets/Presets'
 import './Engine.scss'
 
 
 export const Engine = () => {
     // Grid dimensions
-    const rows = 45;
-    const cols = 55;
+    const rows = 40;
+    const cols = 45;
+    const ratio = 560;
+    const [nodeSize, setNodeSize] = useState(ratio/rows)
 
-    // row 45 col 55
 
     const [grid, setGrid] = useState(() => {
         let grid = [];
@@ -28,7 +30,6 @@ export const Engine = () => {
         dead: rows*cols,
     })
     const [initState, setInitState] = useState({grid, info})
-    
 
     // Algorithms
     const { runAlgorithm, genRandGrid } = Algorithms(setGrid, setInfo, rows, cols);
@@ -134,6 +135,8 @@ export const Engine = () => {
         })
     }
 
+    const [isPresetsOpen, setIsPresetsOpen] = useState(false)
+
     // Reset grid to initial state
     const resetGrid = () => {
         setRunning(false);
@@ -142,13 +145,45 @@ export const Engine = () => {
         setInfo(initState.info)
     }
 
+    const getConfig = () => {
+        const liveCells = [];
+        for (let i = 0; i < rows; i++ ) {
+            for (let j = 0; j < cols; j++) {
+                if (grid[i][j] === 1) {
+                    liveCells.push([i, j])
+                }
+            }
+        }
+        console.log(liveCells);
+    }
+
+    const loadConfig = (config) => {
+        const newGrid = produce(grid, gridCopy => {
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    gridCopy[i][j] = 0;
+                }
+            }
+
+            for (let i = 0; i < config.length; i++) {
+                const x = config[i][0];
+                const y = config[i][1];
+                gridCopy[x][y] = 1;
+            }
+        }) 
+        
+        setGrid(newGrid)
+    }
+
     return (
         <div className="main">
+            <Presets isOpen={isPresetsOpen} setIsOpen={setIsPresetsOpen} loadConfig={loadConfig}/>
             <div className="options">
+            <button onClick={() => getConfig()}style={{color: "black"}}>Get Config</button>
                 <div className="config">
                     <span className="title">Configuration</span>
                     <div className="config-buttons">
-                        <button className="preset">
+                        <button className="preset" onClick={() => setIsPresetsOpen(true)}>
                             <span className="icon"><span class="material-icons">view_list</span>Presets</span>
                         </button>
                         <button 
@@ -179,6 +214,7 @@ export const Engine = () => {
                     resetGrid={resetGrid}
                     clearGrid={clearGrid}
                     nextGen={nextGen}
+                    speed={speed}
                     changeSpeed={changeSpeed}
                 />
             </div> 
@@ -192,9 +228,9 @@ export const Engine = () => {
                                     (<div 
                                         key={c}
                                         className={`node node-${grid[r][c] === 1 ? 'alive' : 'dead'}`}
+                                        style={{width: nodeSize, height: nodeSize}}
                                         onClick={() => toggleClick(r, c)}
                                         >
-                                        {grid[r][c] === 1}
                                     </div>))
                                 }
                             </div>
