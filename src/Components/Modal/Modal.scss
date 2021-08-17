@@ -11,7 +11,7 @@
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.233);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(2px);
 }
 
 
@@ -19,23 +19,32 @@
 
 .container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: start;
     width: 50%;
     height: 65%;
+    padding: 10px;
+    padding-right: 30px;
     border-radius: 10px;
-    flex-direction: column;
     top: 50%;
     left: 50%;
     background-color:#292929;
-    padding: 10px;
     z-index: 1000;
     color: white;
+    text-align: center;
 
 
     .closeButton {
         width: 150px;
-        color:black
+        border: 1px solid rgb(30, 141, 231);
+        background-color: rgb(30, 141, 231);
+
+        &:hover {
+            background-color: rgb(26, 120, 197);
+            border-color: rgb(26, 120, 197);
+    }
+
     }
 }
 

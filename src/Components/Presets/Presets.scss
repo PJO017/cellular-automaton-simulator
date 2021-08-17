@@ -1,5 +1,3 @@
-
-
 .main {
     width: 100%;
     height: 100%;
@@ -19,13 +17,20 @@
         width: 15px;
         border-radius: 10px;
         background-color: grey;
+
+        &-thumb {
+            background-color: #23a6d5;
+            border-radius: 10px;
+            outline: 1px solid slategrey;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        } 
     }
 
-    &::-webkit-scrollbar-thumb {
-        background-color: #23a6d5;
-        border-radius: 10px;
-        outline: 1px solid slategrey;
-    }
+    scrollbar-width: thin;
+    scrollbar-color: light;
+
+
+
 }
 
 .preset-container {

@@ -16,11 +16,19 @@ export const App = () => {
     <>
       <div className="App">
         <Engine/>
-        <Modal 
+        <Modal
+            width="40%"
+            height="40%" 
             open={isModalOpen}
             onClose={() => setIsModalOpen(false)}>
-              Welcome To Reactive Cellular Atomata!
-
+              <section className="modal-content">
+                <h1 className="title">Welcome To Cellular Atomata Simulator!</h1>
+                <div className="instructions">
+                  Choose a configuration from the presets list, randomize cells of
+                    the grid or make your own custom pattern.
+                  <p>Then choose from one of the seven rules and press start to begin simulating generations!</p>
+                </div>
+              </section>
         </Modal>
       </div>
     </>

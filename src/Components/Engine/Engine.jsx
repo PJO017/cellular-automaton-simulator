@@ -11,9 +11,10 @@ export const Engine = () => {
     const rows = 40;
     const cols = 45;
     const ratio = 560;
-    const [nodeSize, setNodeSize] = useState(ratio/rows)
+    const cellSize = ratio/rows
 
 
+    // Set grid state
     const [grid, setGrid] = useState(() => {
         let grid = [];
         for (let i = 0; i < rows; i++) {
@@ -35,6 +36,7 @@ export const Engine = () => {
     const { runAlgorithm, genRandGrid } = Algorithms(setGrid, setInfo, rows, cols);
     const algos = ["Conway's Way of Life", "Life Without Death", "HighLife", "Day and Night", "Replicator", "Seed", 'Just Friends'];
 
+    // Current algorithm
     const [currAlgo, setCurrAlgo] = useState(0);
     const currAlgoRef = useRef(currAlgo)
 
@@ -44,6 +46,7 @@ export const Engine = () => {
     const [speed, setSpeed] = useState(0)
     const speedRef = useRef(speed)
 
+    // Start running simulation
     const startSim = () => {
         if (!runningRef.current) {
             return; 
@@ -62,7 +65,7 @@ export const Engine = () => {
         startSim(speedRef)
     }
 
-    // Run one generation
+    // Simulate one generation
     const nextGen = () => {
         if (running) return;
         else {
@@ -75,7 +78,7 @@ export const Engine = () => {
         }
     }
 
-    // Toggle Cell 
+    // Toggle cell click
     const toggleClick = (r, c) => {
         const newGrid = produce(grid, gridCopy => {
             if (grid[r][c] === 0) {
@@ -135,7 +138,6 @@ export const Engine = () => {
         })
     }
 
-    const [isPresetsOpen, setIsPresetsOpen] = useState(false)
 
     // Reset grid to initial state
     const resetGrid = () => {
@@ -145,6 +147,11 @@ export const Engine = () => {
         setInfo(initState.info)
     }
 
+
+    // Presets
+    const [isPresetsOpen, setIsPresetsOpen] = useState(false)
+
+    // Load preset config
     const loadConfig = (config) => {
         const newGrid = produce(grid, gridCopy => {
             for (let i = 0; i < rows; i++) {
@@ -165,6 +172,7 @@ export const Engine = () => {
             alive: config.length,
             dead: (rows*cols)-config.length
         })
+        setCurrAlgo(algos[0])
     }
 
     return (
@@ -219,7 +227,7 @@ export const Engine = () => {
                                     (<div 
                                         key={c}
                                         className={`node node-${grid[r][c] === 1 ? 'alive' : 'dead'}`}
-                                        style={{width: nodeSize, height: nodeSize}}
+                                        style={{width: cellSize, height: cellSize}}
                                         onClick={() => toggleClick(r, c)}
                                         >
                                     </div>))

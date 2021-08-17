@@ -31,7 +31,7 @@ export const Controls = (props) => {
         <span><span class="material-icons">clear</span>Clear</span>
       </button>
       <div className="speed">
-        <span><span class="material-icons">speed</span>Speed</span>
+        <span ><span class="material-icons" style={{marginRight:5}}>speed</span>Speed</span>
         <input
           type="range"
           min="-1000"
