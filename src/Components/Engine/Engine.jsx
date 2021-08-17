@@ -8,7 +8,7 @@ import './Engine.scss'
 
 export const Engine = () => {
     // Grid dimensions
-    const rows = 40;
+    const rows = 45;
     const cols = 45;
     const ratio = 560;
     const cellSize = ratio/rows
@@ -147,7 +147,6 @@ export const Engine = () => {
         setInfo(initState.info)
     }
 
-
     // Presets
     const [isPresetsOpen, setIsPresetsOpen] = useState(false)
 
@@ -165,7 +164,9 @@ export const Engine = () => {
                 const y = config[i][1];
                 gridCopy[x][y] = 1;
             }
-        })    
+        })  
+        setRunning(false)
+        runningRef.current = false  
         setGrid(newGrid)
         setInfo({
             gen: 0, 

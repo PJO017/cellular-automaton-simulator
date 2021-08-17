@@ -14,8 +14,8 @@ export const Presets = props => {
                 onClose={() => setIsOpen(false)}>
                     <h2 style={{ fontSize: 35}}>Presets</h2>
                     <div className='preset-list'>
-                        {presetsData.map((preset) => (
-                            <div key={preset.id} className="preset-container">
+                        {presetsData.map((preset, idx) => (
+                            <div key={idx} className="preset-container">
                                 <span className="title">{preset.name}</span>
                                 <span className="desc">{preset.desc}</span>
                                 <div onClick={() => {
