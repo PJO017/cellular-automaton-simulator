@@ -22,7 +22,7 @@ export const App = () => {
             open={isModalOpen}
             onClose={() => setIsModalOpen(false)}>
               <section className="modal-content">
-                <h1 className="title">Welcome To Cellular Atomata Simulator!</h1>
+                <h1 className="title">Welcome To Cellular Automaton Simulator!</h1>
                 <div className="instructions">
                   Choose a configuration from the presets list, randomize cells of
                     the grid or make your own custom pattern.

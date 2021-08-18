@@ -166,14 +166,15 @@ export const Engine = () => {
             }
         })  
         setRunning(false)
-        runningRef.current = false  
+        runningRef.current = false 
+        setCurrAlgo(0) 
+        currAlgoRef.current = 0
         setGrid(newGrid)
         setInfo({
             gen: 0, 
             alive: config.length,
             dead: (rows*cols)-config.length
         })
-        setCurrAlgo(algos[0])
     }
 
     return (
