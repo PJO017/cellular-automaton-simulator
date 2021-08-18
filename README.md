@@ -10,6 +10,8 @@ You can pick from a list of preset grid configurations, randomize the grid cells
 
 Press start to begin simulating through generations or use the next button to step through each generation one by one.
 
+Live Demo: https://cellular-automaton-sim.web.app/
+
 ![screenshot1](/public/assets/screenshots/screenshot1.png)
 ![screenshot2](/public/assets/screenshots/screenshot2.png)
 
