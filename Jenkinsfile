@@ -3,8 +3,12 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                echo 'building the application...' 
-                echo 'application built'
+                echo "building app..."
+                nodejs('NodeJS-16.15.1') {
+                    sh 'unset CI'
+                    sh 'npm i'
+                    sh 'npm run build'
+                }  
             }
         }
         stage("test") {
